@@ -545,3 +545,240 @@ footer.site-footer .socials a:hover { background:var(--green); border-color:var(
 
 #formStatus { display:none; margin-top:16px; padding:14px 16px; border-radius:12px; background: rgba(47,109,53,.1); color: var(--green); font:600 13.5px "Open Sans",sans-serif; }
 #formStatus.visible { display:block; }
+
+/* =====================================================
+   WOCCA UNDERSTANDING CAROUSEL
+===================================================== */
+
+.wocca-carousel-section {
+  background: #f4f7f5;
+  padding: 90px 0;
+}
+
+.wocca-carousel-wrap {
+  max-width: 1200px;
+}
+
+.wocca-carousel {
+  position: relative;
+  margin-top: 55px;
+  overflow: hidden;
+}
+
+.wocca-slide {
+  display: none;
+  min-height: 460px;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: stretch;
+  background: #ffffff;
+  border: 1px solid rgba(15, 49, 74, 0.1);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
+}
+
+.wocca-slide.active {
+  display: grid;
+  animation: carouselFade 0.45s ease;
+}
+
+@keyframes carouselFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* CONTENT */
+
+.wocca-slide-content {
+  padding: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.slide-number {
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: #5d9a54;
+  margin-bottom: 16px;
+}
+
+.slide-label {
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #0f314a;
+  margin-bottom: 18px;
+}
+
+.wocca-slide-content h3 {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.15;
+  color: #0f314a;
+  margin: 0 0 20px;
+  max-width: 600px;
+}
+
+.wocca-slide-content > p:not(.slide-label) {
+  max-width: 580px;
+  font-size: 17px;
+  line-height: 1.8;
+  color: #52616b;
+  margin-bottom: 30px;
+}
+
+/* VISUAL */
+
+.wocca-slide-visual {
+  min-height: 460px;
+  background: #0f314a;
+  color: #5d9a54;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.wocca-slide-visual::before {
+  content: "";
+  position: absolute;
+  width: 330px;
+  height: 330px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+}
+
+.wocca-slide-visual svg {
+  width: min(65%, 310px);
+  height: auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* INDIVIDUAL VISUAL TONES */
+
+.visual-water {
+  color: #5d9a54;
+}
+
+.visual-offset {
+  color: #7fb3d5;
+}
+
+.visual-verify {
+  color: #5d9a54;
+}
+
+.visual-certify {
+  color: #9cc68d;
+}
+
+.visual-community {
+  color: #7fb3d5;
+}
+
+/* CONTROLS */
+
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 30px;
+}
+
+.carousel-arrow {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(15, 49, 74, 0.2);
+  background: #ffffff;
+  color: #0f314a;
+  font-size: 24px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.carousel-arrow:hover {
+  background: #0f314a;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 9px;
+}
+
+.carousel-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: #c8d0d3;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.carousel-dot.active {
+  width: 28px;
+  border-radius: 20px;
+  background: #5d9a54;
+}
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+  .wocca-carousel-section {
+    padding: 65px 0;
+  }
+
+  .wocca-slide,
+  .wocca-slide.active {
+    grid-template-columns: 1fr;
+  }
+
+  .wocca-slide-content {
+    padding: 45px 30px;
+  }
+
+  .wocca-slide-visual {
+    min-height: 280px;
+  }
+
+  .wocca-slide-visual svg {
+    width: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .wocca-slide-content {
+    padding: 38px 24px;
+  }
+
+  .wocca-slide-content h3 {
+    font-size: 28px;
+  }
+
+  .wocca-slide-content > p:not(.slide-label) {
+    font-size: 15px;
+  }
+
+  .carousel-controls {
+    gap: 15px;
+  }
+}

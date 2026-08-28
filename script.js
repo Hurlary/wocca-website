@@ -65,5 +65,99 @@ function wireForm(formId, statusId, message) {
   });
 }
 
+/* =====================================================
+   WOCCA UNDERSTANDING CAROUSEL
+===================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const carousel = document.querySelector(".wocca-carousel");
+
+  if (!carousel) return;
+
+  const slides = carousel.querySelectorAll(".wocca-slide");
+  const dots = carousel.querySelectorAll(".carousel-dot");
+
+  const nextButton = carousel.querySelector(".carousel-next");
+  const prevButton = carousel.querySelector(".carousel-prev");
+
+  let currentSlide = 0;
+  let autoPlay;
+
+  function showSlide(index) {
+
+    slides[currentSlide].classList.remove("active");
+    dots[currentSlide].classList.remove("active");
+
+    currentSlide = index;
+
+    if (currentSlide >= slides.length) {
+      currentSlide = 0;
+    }
+
+    if (currentSlide < 0) {
+      currentSlide = slides.length - 1;
+    }
+
+    slides[currentSlide].classList.add("active");
+    dots[currentSlide].classList.add("active");
+  }
+
+  function nextSlide() {
+    showSlide(currentSlide + 1);
+  }
+
+  function previousSlide() {
+    showSlide(currentSlide - 1);
+  }
+
+  function startAutoPlay() {
+
+    autoPlay = setInterval(() => {
+      nextSlide();
+    }, 7000);
+
+  }
+
+  function resetAutoPlay() {
+
+    clearInterval(autoPlay);
+    startAutoPlay();
+
+  }
+
+  nextButton.addEventListener("click", () => {
+    nextSlide();
+    resetAutoPlay();
+  });
+
+  prevButton.addEventListener("click", () => {
+    previousSlide();
+    resetAutoPlay();
+  });
+
+  dots.forEach((dot, index) => {
+
+    dot.addEventListener("click", () => {
+
+      showSlide(index);
+      resetAutoPlay();
+
+    });
+
+  });
+
+  carousel.addEventListener("mouseenter", () => {
+    clearInterval(autoPlay);
+  });
+
+  carousel.addEventListener("mouseleave", () => {
+    startAutoPlay();
+  });
+
+  startAutoPlay();
+
+});
+
 wireForm("contactForm", "formStatus", "Thanks — your message has been noted. WOCCA will follow up by email shortly.");
 wireForm("newsletterForm", "newsletterStatus", "You're on the list — thanks for staying informed.");
